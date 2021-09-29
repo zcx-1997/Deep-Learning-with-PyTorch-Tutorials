@@ -1,11 +1,11 @@
 import  numpy as np
-from    mpl_toolkits.mplot3d import Axes3D
 from    matplotlib import pyplot as plt
 import  torch
 
 
 
 def himmelblau(x):
+    ''' 4个极值点：(3,2),(-2.80,3.13),(-3.78,-3.28),(3.58,-1.85) '''
     return (x[0] ** 2 + x[1] - 11) ** 2 + (x[0] + x[1] ** 2 - 7) ** 2
 
 
@@ -25,8 +25,11 @@ ax.set_ylabel('y')
 plt.show()
 
 
-# [1., 0.], [-4, 0.], [4, 0.]
-x = torch.tensor([-4., 0.], requires_grad=True)
+# [1., 0.] --> [3.0, 2.0],
+# [-4, 0.] --> [-3.7793102264404297, -3.2831859588623047],
+# [4, 0.]  --> [3.584428310394287, -1.8481265306472778],
+# [-1, 0.] --> [-2.8051180839538574, 3.131312608718872]
+x = torch.tensor([-1, 0.], requires_grad=True)
 optimizer = torch.optim.Adam([x], lr=1e-3)
 for step in range(20000):
 
