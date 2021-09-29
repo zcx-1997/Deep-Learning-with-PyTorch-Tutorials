@@ -36,7 +36,7 @@ print(x.shape, y.shape, x.min(), x.max())
 plot_image(x, y, 'image sample')
 
 
-# step1. load dataset
+# step2. model
 class Net(nn.Module):
 
     def __init__(self):
@@ -65,6 +65,7 @@ net = Net()
 optimizer = optim.SGD(net.parameters(), lr=0.01, momentum=0.9)
 
 
+# step3. train
 train_loss = []
 
 for epoch in range(3):
@@ -94,7 +95,7 @@ for epoch in range(3):
 plot_curve(train_loss)
 # we get optimal [w1, b1, w2, b2, w3, b3]
 
-
+# step4. test
 total_correct = 0
 for x,y in test_loader:
     x  = x.view(x.size(0), 28*28)
