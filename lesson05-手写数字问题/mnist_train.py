@@ -36,7 +36,7 @@ print(x.shape, y.shape, x.min(), x.max())
 plot_image(x, y, 'image sample')
 
 
-
+# step1. load dataset
 class Net(nn.Module):
 
     def __init__(self):
