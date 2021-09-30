@@ -24,7 +24,6 @@ test_loader = torch.utils.data.DataLoader(
     batch_size=batch_size, shuffle=True)
 
 
-
 w1, b1 = torch.randn(200, 784, requires_grad=True),\
          torch.zeros(200, requires_grad=True)
 w2, b2 = torch.randn(200, 200, requires_grad=True),\
@@ -49,7 +48,7 @@ def forward(x):
 
 
 optimizer = optim.SGD([w1, b1, w2, b2, w3, b3], lr=learning_rate)
-criteon = nn.CrossEntropyLoss()
+criterion = nn.CrossEntropyLoss()
 
 for epoch in range(epochs):
 
@@ -57,7 +56,7 @@ for epoch in range(epochs):
         data = data.view(-1, 28*28)
 
         logits = forward(data)
-        loss = criteon(logits, target)
+        loss = criterion(logits, target)
 
         optimizer.zero_grad()
         loss.backward()
@@ -75,7 +74,7 @@ for epoch in range(epochs):
     for data, target in test_loader:
         data = data.view(-1, 28 * 28)
         logits = forward(data)
-        test_loss += criteon(logits, target).item()
+        test_loss += criterion(logits, target).item()
 
         pred = logits.data.max(1)[1]
         correct += pred.eq(target.data).sum()
