@@ -38,6 +38,7 @@ class MLP(nn.Module):
             nn.LeakyReLU(inplace=True),
             nn.Linear(200, 10),
             nn.LeakyReLU(inplace=True),
+
         )
 
     def forward(self, x):
